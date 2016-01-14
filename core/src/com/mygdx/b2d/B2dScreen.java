@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -47,7 +48,7 @@ public class B2dScreen implements Screen {
 
         shape.setAsBox(150 / PPM, 10 / PPM);
         fdef.shape = shape;
-        fdef.friction = 0.9f;
+        fdef.friction = 0.5f; // скольжение
         fdef.filter.categoryBits = BIT_WALL;
         fdef.filter.maskBits = BIT_BALL;
         body.createFixture(fdef).setUserData("wall");
@@ -62,9 +63,10 @@ public class B2dScreen implements Screen {
         bdef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bdef);
 
-        cshape.setRadius(10 / PPM);
+        cshape.setRadius((5 + MathUtils.random(10)) / PPM);
         fdef.shape = cshape;
-        fdef.restitution = 0.8f;
+        fdef.restitution = 0.8f; // упругость
+        fdef.friction = 0.5f; // скольжение
         fdef.filter.categoryBits = BIT_BALL;
         fdef.filter.maskBits = BIT_BALL | BIT_WALL;
         body.createFixture(fdef).setUserData("ball");
