@@ -1,6 +1,7 @@
 package com.mygdx.b2d;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,8 +19,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import static com.mygdx.b2d.B2d.PPM;
 
 public class B2dScreen implements Screen {
-    private static final short BIT_WALL = 1;
-    private static final short BIT_BALL = 2;
+    private static final short BIT_WALL = 1; // 00000001
+    private static final short BIT_BALL = 2; // 00000010
 
     private World world;
     private Box2DDebugRenderer b2dr;
@@ -84,6 +85,9 @@ public class B2dScreen implements Screen {
     }
 
     public void update(float dt) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
         if (Gdx.input.justTouched())
             createBall(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         world.step(dt, 6, 2);
