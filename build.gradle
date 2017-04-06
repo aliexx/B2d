@@ -2,9 +2,10 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.2.2'
     }
 }
 
@@ -15,10 +16,10 @@ allprojects {
     version = '1.0'
     ext {
         appName = "b2d"
-        gdxVersion = '1.9.2'
+        gdxVersion = '1.9.6'
         roboVMVersion = '1.8.0'
         box2DLightsVersion = '1.4'
-        ashleyVersion = '1.6.0'
+        ashleyVersion = '1.7.3'
         aiVersion = '1.8.0'
     }
 
